@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MAG APK Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body { font-family: Arial; background: #111; color: white; text-align: center; }
-    .box { background: #222; margin: 20px; padding: 20px; border-radius: 10px; }
-    button { padding: 10px; background: lime; border: none; }
-  </style>
+    <title>MAG APK Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; background: #111; color: white; text-align: center; padding-top: 50px; }
+        .box { background: #222; margin: 20px; padding: 30px; border-radius: 15px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .btn { background: #00FF00; color: black; padding: 18px 35px; border: none; border-radius: 8px; 
+               font-weight: bold; text-decoration: none; display: inline-block; font-size: 20px; transition: 0.3s; }
+        .btn:active { background: #00cc00; transform: scale(0.95); }
+    </style>
+  <link rel="manifest" href="manifest.json">
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
 </head>
 <body>
-
-<h1>MAG APK Store 🚀</h1>
-
-<div class="box">
-  <h2>Minecraft Animation Generator</h2>
-  <p>Version: 1.0</p>
-  <a href="YOUR_LINK">
-    <button>Download APK</button>
-  </a>
-</div>
-
+    <h1>MAG APK Store 🚀</h1>
+    <div class="box">
+        <h2>Minecraft Animation Generator</h2>
+        <p>Version: 1.0</p>
+        <br>
+        <a href="MAG.apk" class="btn" download>Download APK</a>
+    </div>
 </body>
 </html>
