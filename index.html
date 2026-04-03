@@ -1,29 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>MAG APK Store</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAG - Minecraft Animation Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; background: #111; color: white; text-align: center; padding-top: 50px; }
-        .box { background: #222; margin: 20px; padding: 30px; border-radius: 15px; border: 1px solid #333; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .btn { background: #00FF00; color: black; padding: 18px 35px; border: none; border-radius: 8px; 
-               font-weight: bold; text-decoration: none; display: inline-block; font-size: 20px; transition: 0.3s; }
-        .btn:active { background: #00cc00; transform: scale(0.95); }
+        :root {
+            --bg: #000000;
+            --card: #121212;
+            --accent: #00FF00;
+            --text: #ffffff;
+            --gray: #888888;
+            --input-bg: #1a1a1a;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container simulating a mobile device */
+        .app-container {
+            width: 100%;
+            max-width: 400px;
+            height: 90vh;
+            background: var(--card);
+            border: 2px solid #333;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.1);
+        }
+
+        .screen {
+            display: none;
+            padding: 30px;
+            flex-grow: 1;
+            flex-direction: column;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Step 1 & 2: Brand Identity */
+        .logo-box {
+            width: 100px; height: 100px; border: 3px solid #444;
+            margin: 40px auto 20px; display: flex; align-items: center;
+            justify-content: center; font-size: 50px; font-weight: bold;
+            background: linear-gradient(145deg, #222, #000);
+        }
+
+        h2 { font-size: 1.4rem; text-align: center; margin-bottom: 10px; }
+        .version-text { text-align: center; color: var(--gray); margin-bottom: 40px; }
+
+        /* Buttons & Inputs */
+        .btn {
+            background: #252525; border: 1px solid #444; color: white;
+            padding: 16px; margin-bottom: 12px; border-radius: 10px;
+            cursor: pointer; text-align: left; font-size: 15px;
+            transition: 0.2s;
+        }
+        .btn:hover { border-color: var(--accent); background: #333; }
+        
+        .btn-main {
+            background: var(--accent); color: black; 
+            text-align: center; font-weight: bold; border: none;
+            text-decoration: none; display: block;
+        }
+
+        input {
+            background: var(--input-bg); border: 1px solid #333; color: white;
+            padding: 14px; border-radius: 8px; margin-bottom: 20px; outline: none;
+        }
+
+        .nav-link { color: var(--accent); cursor: pointer; text-align: center; margin-top: 15px; }
+
+        /* Step 8 Editor Layout */
+        .preview-window {
+            background: #000; flex-grow: 1; border: 1px solid #333;
+            border-radius: 10px; margin: 20px 0; display: flex;
+            align-items: center; justify-content: center; color: #444;
+        }
     </style>
-  <link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
 </head>
 <body>
-    <h1>MAG APK Store 🚀</h1>
-    <div class="box">
-        <h2>Minecraft Animation Generator</h2>
-        <p>Version: 1.0</p>
-        <br>
-        <a href="MAG.apk" class="btn" download>Download APK</a>
+
+<div class="app-container">
+
+    <div id="step1" class="screen active">
+        <div class="logo-box">M</div>
+        <h2>MAG APK Store</h2>
+        <p class="version-text">Version 1.0</p>
+        <a href="MAG.apk" class="btn btn-main" download>Download APK</a>
+        <p style="font-size: 11px; color: var(--gray); text-align: center; margin-top: 20px;">
+            Designed by lgballfamily-dot
+        </p>
+        <button class="nav-link" style="background:none; border:none;" onclick="goTo(3)">Preview App Logic →</button>
     </div>
+
+    <div id="step3" class="screen">
+        <h2>Select your option</h2>
+        <p style="color: var(--gray); text-align: center;">Step 4: Login Cases</p>
+        <button class="btn" onclick="goTo(5)">Continue with Google</button>
+        <button class="btn" onclick="alert('Case 2: Redirecting to MAG.com integration...')">MAG.com</button>
+        <button class="btn" onclick="goTo('email_login')">Email</button>
+        <span class="nav-link" onclick="goTo(1)">← Back to Store</span>
+    </div>
+
+    <div id="step5" class="screen">
+        <h2 style="text-align: left;">Sign in</h2>
+        <p style="color: var(--gray);">to continue to MAG</p>
+        <div class="btn" style="background: #1a1a1a; border-radius: 5px;">
+            <div style="font-weight: bold;">User Account</div>
+            <div style="font-size: 12px; color: var(--gray);">user@gmail.com</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: auto;">
+            <span class="nav-link" onclick="goTo(3)">Back</span>
+            <span class="nav-link" onclick="goTo(6)">Next</span>
+        </div>
+    </div>
+
+    <div id="step6" class="screen">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin:0;">Home</h3>
+            <span style="cursor: pointer; font-size: 20px;" onclick="alert('Settings: Dark Mode Active')">⚙️</span>
+        </div>
+        <div class="preview-window">
+            No Recent Projects Found
+        </div>
+        <button class="btn btn-main" onclick="goTo(7)">+ New Project</button>
+    </div>
+
+    <div id="step7" class="screen">
+        <h2>Create Project</h2>
+        <label style="margin-bottom: 5px; font-size: 14px;">Project Name:</label>
+        <input type="text" id="pName" placeholder="My Animation">
+        <label style="margin-bottom: 5px; font-size: 14px;">Frame Rate (FPS):</label>
+        <input type="number" id="pFPS" value="24">
+        <button class="btn btn-main" onclick="createProject()">Create</button>
+        <span class="nav-link" onclick="goTo(6)">Cancel</span>
+    </div>
+
+    <div id="step8" class="screen">
+        <h3 id="displayTitle" style="margin:0;">Project</h3>
+        <div class="preview-window">
+            <span style="color: var(--accent); font-family: monospace;">[ Animation Canvas ]</span>
+        </div>
+        <button class="btn" onclick="alert('Step 8: Exporting MP4...')">Export Video</button>
+        <button class="btn btn-main" onclick="uploadYouTube()">Upload to YouTube</button>
+        <span class="nav-link" onclick="goTo(6)">Exit Editor</span>
+    </div>
+
+</div>
+
+<script>
+    // Navigation Logic
+    function goTo(stepId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        
+        if (stepId === 'email_login') {
+            alert("Step 4 Case 3: Email Login form would appear here.");
+            document.getElementById('step3').classList.add('active');
+        } else {
+            document.getElementById('step' + stepId).classList.add('active');
+        }
+    }
+
+    // Step 7 logic: Handling input
+    function createProject() {
+        const name = document.getElementById('pName').value || "Untitled Project";
+        document.getElementById('displayTitle').innerText = name;
+        goTo(8);
+    }
+
+    // Step 8 logic: YouTube Integration
+    function uploadYouTube() {
+        const confirmUpload = confirm("Do you want to upload this to your linked YouTube channel?");
+        if (confirmUpload) {
+            alert("Connecting to YouTube API... Uploading... Success!");
+            goTo(6);
+        }
+    }
+</script>
+
 </body>
 </html>
